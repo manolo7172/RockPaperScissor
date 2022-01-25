@@ -51,3 +51,4 @@ do {
 } while(humanC<5 && computerC <5)
 }
 
+game();
