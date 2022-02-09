@@ -43,12 +43,14 @@ let computerSelection  = "", outcome = "", playerSelection  = "";
 function game(){
 do {
     do{
-    playerSelection  = window.prompt("Pick One of the following:\n a)Rock\n b)Papper\n c)Scissor");
+        playerSelection  = window.prompt("Pick One of the following:\n a)Rock\n b)Papper\n c)Scissor");
     }while(!arr.includes(playerSelection .toLowerCase()));
+
     computerSelection =computerPlay();
-   outcome=compareChoices(playerSelection .toLowerCase(),computerSelection );
-   alert(`You choose - ${playerSelection .toLowerCase()} \nComputer choose - ${computerSelection } \n${outcome} (You: ${humanC} - Comp: ${computerC})`);
-} while(humanC<5 && computerC <5)
+    outcome=compareChoices(playerSelection .toLowerCase(),computerSelection );
+    alert(`You choose - ${playerSelection .toLowerCase()} \nComputer choose - 
+            ${computerSelection } \n${outcome} (You: ${humanC} - Comp: ${computerC})`);
+} while(humanC<5 && computerC <5);
 }
 
 game();
