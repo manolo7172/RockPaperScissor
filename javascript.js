@@ -1,10 +1,13 @@
 let humanC=0, computerC = 0;
+const arr = ['rock','papper','scissor'];
 let computerSelection  = "", outcome = "", playerSelection  = "";
 const score = document.querySelector(".Score");
 const content = document.createElement('div');
 content.classList.add('content');
 content.textContent = `${humanC}-${computerC}`;
 score.appendChild(content);
+const content2 = document.createElement('div');
+
 
 let computerPlay  = () => {
     let tempNum = Math.floor((Math.random() * 3) + 1);
@@ -43,23 +46,23 @@ let computerPlay  = () => {
         return "You Won";//Winner Left
     }
 } 
-const arr = ['rock','papper','scissor'];
 
 function styledGame(){
 const btn = Array.from(document.querySelectorAll(".btn"));
-const takis = btn.forEach(item => item.addEventListener('click',updScore));
+btn.forEach(item => item.addEventListener('click',updScore));
 }  
 
 function updScore(){
-    if(humanC<5 && computerC <5){
+    if(humanC===5 || computerC ===5){
+        return;
+    }
+    else{
         computerSelection = computerPlay();   
         outcome=compareChoices(this.name,computerSelection );
         console.log(`You choose - ${this.name} \nComputer choose - ${computerSelection }`);
-        content.textContent = `${humanC}-${computerC}`;
+        humanC===5 ? content2.textContent = 'You Won' : computerC === 5 ?content2.textContent = 'You Lost' : content.textContent = `${humanC}-${computerC}`;
+        content.appendChild(content2);
     }
-       else{
-          return 0 ; 
-       }
-    };
+};
 
 styledGame();
