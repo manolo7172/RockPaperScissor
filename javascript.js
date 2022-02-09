@@ -1,4 +1,27 @@
-let compareChoices = (choice1,choice2) => {
+let humanC=0, computerC = 0;
+let computerSelection  = "", outcome = "", playerSelection  = "";
+const score = document.querySelector(".Score");
+const content = document.createElement('div');
+content.classList.add('content');
+content.textContent = `${humanC}-${computerC}`;
+score.appendChild(content);
+
+let computerPlay  = () => {
+    let tempNum = Math.floor((Math.random() * 3) + 1);
+    switch (tempNum){
+        case 1:
+            return 'rock';
+        case 2:
+            return 'papper';
+        case 3:
+            return 'scissor';
+         default:
+         console.log("wrong Entry");
+         break;
+    } 
+ }
+  
+ let compareChoices = (choice1,choice2) => {
 
     if(choice1 === choice2){
         return "Tie";
@@ -19,38 +42,24 @@ let compareChoices = (choice1,choice2) => {
         humanC++;
         return "You Won";//Winner Left
     }
-}
-
-let computerPlay  = () => {
-   let tempNum = Math.floor((Math.random() * 3) + 1);
-   switch (tempNum){
-       case 1:
-           return 'rock';
-       case 2:
-           return 'papper';
-       case 3:
-           return 'scissor';
-        default:
-        console.log("wrong Entry");
-        break;
-   }
-}
-
-
+} 
 const arr = ['rock','papper','scissor'];
-let humanC=0, computerC = 0;
-let computerSelection  = "", outcome = "", playerSelection  = "";
-function game(){
-do {
-    do{
-        playerSelection  = window.prompt("Pick One of the following:\n a)Rock\n b)Papper\n c)Scissor");
-    }while(!arr.includes(playerSelection .toLowerCase()));
 
-    computerSelection =computerPlay();
-    outcome=compareChoices(playerSelection .toLowerCase(),computerSelection );
-    alert(`You choose - ${playerSelection .toLowerCase()} \nComputer choose - 
-            ${computerSelection } \n${outcome} (You: ${humanC} - Comp: ${computerC})`);
-} while(humanC<5 && computerC <5);
-}
+function styledGame(){
+const btn = Array.from(document.querySelectorAll(".btn"));
+const takis = btn.forEach(item => item.addEventListener('click',updScore));
+}  
 
-game();
+function updScore(){
+    if(humanC<5 && computerC <5){
+        computerSelection = computerPlay();   
+        outcome=compareChoices(this.name,computerSelection );
+        console.log(`You choose - ${this.name} \nComputer choose - ${computerSelection }`);
+        content.textContent = `${humanC}-${computerC}`;
+    }
+       else{
+          return 0 ; 
+       }
+    };
+
+styledGame();
